@@ -1,0 +1,9 @@
+grammar mdsd.MathCompiler with org.eclipse.xtext.common.Terminals
+
+generate mathCompiler "http://www.MathCompiler.mdsd"
+
+Model:
+	greetings+=Greeting*;
+	
+Greeting:
+	'Hello' name=ID '!';

@@ -1,0 +1,43 @@
+grammar mdsd.MathCompiler with org.eclipse.xtext.common.Terminals
+
+generate mathCompiler "http://www.MathCompiler.mdsd"
+
+Expressions:
+	expressions+=MathExp*
+;
+
+MathExp:
+	'result' line=GivenString 'is' exp=Exp ";"
+;
+
+GivenString:
+	STRING
+;
+
+Exp returns Expression:
+	Factor (('+' {Plus.left=current} | '-' {Minus.left=current}) right=Factor)*
+;
+
+Factor returns Expression:
+	Primary (('*' {Mult.left=current} | '/' {Div.left=current}) right=Primary)*	
+;
+
+Primary returns Expression:
+	Number | Parenthesis | VariableBinding | VariableUse
+;
+
+VariableUse returns Expression:
+	{Var} id=ID
+;
+
+VariableBinding returns Expression:
+	{Let} 'let' id=ID '=' binding=Exp 'in' body=Exp 'end'
+;
+
+Parenthesis returns Expression:
+	'(' Exp ')'
+;
+
+Number returns Expression:
+	{Num} value=INT
+;
