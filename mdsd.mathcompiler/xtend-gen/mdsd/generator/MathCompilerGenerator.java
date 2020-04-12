@@ -42,6 +42,9 @@ public class MathCompilerGenerator extends AbstractGenerator {
     fsa.generateFile("MathCompiler.java", this.generateMath(maths));
   }
   
+  /**
+   * The java file generated.
+   */
   public CharSequence generateMath(final Expressions exp) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("import java.util.*;");
@@ -132,15 +135,15 @@ public class MathCompilerGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    _builder.append("private External externals;");
+    _builder.append("private Externals externals;");
     _builder.newLine();
     _builder.append("\t\t\t");
     _builder.newLine();
     _builder.newLine();
-    _builder.append("public MathCompiler(External _external){");
+    _builder.append("public MathCompiler(Externals _externals){");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("external = _external;");
+    _builder.append("externals = _externals;");
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();

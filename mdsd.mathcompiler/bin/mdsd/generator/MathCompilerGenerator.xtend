@@ -44,7 +44,9 @@ class MathCompilerGenerator extends AbstractGenerator {
 		fsa.generateFile("MathCompiler.java", maths.generateMath)
 	}
 	
-	
+	/**
+	 * The java file generated.
+	 */
 	def CharSequence generateMath(Expressions exp){
 		'''
 		import java.util.*;
@@ -93,17 +95,18 @@ class MathCompilerGenerator extends AbstractGenerator {
 	/**
 	 * Will put external function power into the java file.
 	 */
-	def externalWrite()'''
-	public static interface Externals {
-		public int power(int base, int exponent);
-	}
-	private External externals;
-				
-	
-	public MathCompiler(External _external){
-		external = _external;
-	}
-	'''
+	def externalWrite()
+		'''
+		public static interface Externals {
+			public int power(int base, int exponent);
+		}
+		private Externals externals;
+					
+		
+		public MathCompiler(Externals _externals){
+			externals = _externals;
+		}
+		'''
 	
 	def String displayExp(Expression exp) {
 		"("+switch exp {
